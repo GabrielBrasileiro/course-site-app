@@ -22,7 +22,7 @@ public class FirebaseAuthProvider {
 
     public void signInWithEmailAndPassword(@NonNull String email, @NonNull String password, RequestCallback<FirebaseUser> callback) {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(mActivity, task -> {
-            if(task.isSuccessful()){
+            if (task.isSuccessful()) {
                 callback.onSuccess(mAuth.getCurrentUser());
             } else {
                 callback.onError(Objects.requireNonNull(task.getException()).getMessage());
@@ -30,17 +30,17 @@ public class FirebaseAuthProvider {
         });
     }
 
-    public void signUpWithEmailAndPassword(@NonNull String email, @NonNull String password, RequestCallback<FirebaseUser> callback){
+    public void signUpWithEmailAndPassword(@NonNull String email, @NonNull String password, RequestCallback<Void> callback) {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(mActivity, task -> {
-            if(task.isSuccessful()){
-                callback.onSuccess(mAuth.getCurrentUser());
+            if (task.isSuccessful()) {
+                callback.onSuccess(null);
             } else {
                 callback.onError(Objects.requireNonNull(task.getException()).getMessage());
             }
         });
     }
 
-    public void loginWithGoogle(){
+    public void loginWithGoogle() {
 
     }
 

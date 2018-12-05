@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseUser;
 import br.com.universodoandroid.coursesiteapp.R;
 import br.com.universodoandroid.coursesiteapp.databinding.ActivityLoginBinding;
 import br.com.universodoandroid.coursesiteapp.modules.login.LoginContract.Presenter;
+import br.com.universodoandroid.coursesiteapp.modules.menu.MenuActivity;
 import br.com.universodoandroid.coursesiteapp.modules.register.RegisterActivity;
 import br.com.universodoandroid.coursesiteapp.modules.resetpassword.ResetPasswordActivity;
 import br.com.universodoandroid.coursesiteapp.services.FirebaseAuthProvider;
@@ -23,6 +24,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         new LoginPresenter(this, new FirebaseAuthProvider(this));
 
         mActivityLoginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
@@ -58,6 +60,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     public void onLoginSuccess(FirebaseUser firebaseUser) {
         Toast.makeText(this, firebaseUser.getEmail(), Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, MenuActivity.class));
     }
 
     @Override

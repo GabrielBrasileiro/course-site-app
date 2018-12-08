@@ -1,9 +1,9 @@
 package br.com.universodoandroid.coursesiteapp.modules.register;
 
+import android.app.ProgressDialog;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Toast;
 
 import br.com.universodoandroid.coursesiteapp.R;
@@ -15,6 +15,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
 
     private ActivityRegisterBinding mActivityRegisterBinding;
     private Presenter mPresenter;
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,18 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     @Override
     public void setPresenter(Presenter presenter) {
         mPresenter = presenter;
+    }
+
+    @Override
+    public void showProgressBar() {
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage("Aguarde...");
+        mProgressDialog.show();
+    }
+
+    @Override
+    public void dismissProgressBar() {
+        mProgressDialog.dismiss();
     }
 
     @Override

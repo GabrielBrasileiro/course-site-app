@@ -1,5 +1,6 @@
 package br.com.universodoandroid.coursesiteapp.modules.login;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     private ActivityLoginBinding mActivityLoginBinding;
     private Presenter mPresenter;
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +38,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         mActivityLoginBinding.registerButton.setOnClickListener(view ->
                 startActivity(new Intent(this, RegisterActivity.class)));
 
-        loginWithEmailAndPasswordSetup();
+        loginWithEmailAndPasswordSetupButton();
     }
 
-    private void loginWithEmailAndPasswordSetup() {
+    private void loginWithEmailAndPasswordSetupButton() {
         mActivityLoginBinding.loginButton.setOnClickListener(view -> {
             String email = mActivityLoginBinding.loginEditText.getText().toString().trim();
             String password = mActivityLoginBinding.passwordEditText.getText().toString().trim();
@@ -70,12 +72,14 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     public void showProgressBar() {
-
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage("Aguarde...");
+        mProgressDialog.show();
     }
 
     @Override
     public void dismissProgressBar() {
-
+        mProgressDialog.dismiss();
     }
 
 }

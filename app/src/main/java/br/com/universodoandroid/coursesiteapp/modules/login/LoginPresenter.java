@@ -7,7 +7,7 @@ import com.google.firebase.auth.FirebaseUser;
 import br.com.universodoandroid.coursesiteapp.services.FirebaseAuthProvider;
 import br.com.universodoandroid.coursesiteapp.utils.RequestCallback;
 
-public class LoginPresenter implements LoginContract.Presenter{
+public class LoginPresenter implements LoginContract.Presenter {
 
     private FirebaseAuthProvider mFirebaseAuthProvider;
     private LoginContract.View mView;
@@ -22,15 +22,19 @@ public class LoginPresenter implements LoginContract.Presenter{
 
     @Override
     public void loginWithEmailAndPassword(String email, String password) {
+        mView.showProgressBar();
+
         mFirebaseAuthProvider.signInWithEmailAndPassword(email, password, new RequestCallback<FirebaseUser>() {
             @Override
             public void onSuccess(FirebaseUser firebaseUser) {
                 mView.onLoginSuccess(firebaseUser);
+                mView.dismissProgressBar();
             }
 
             @Override
             public void onError(String errorMessage) {
                 mView.onLoginFailed(errorMessage);
+                mView.dismissProgressBar();
             }
         });
     }

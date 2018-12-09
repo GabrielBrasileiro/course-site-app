@@ -10,13 +10,13 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseUser;
 
 import br.com.universodoandroid.coursesiteapp.R;
+import br.com.universodoandroid.coursesiteapp.database.Session;
 import br.com.universodoandroid.coursesiteapp.databinding.ActivityLoginBinding;
 import br.com.universodoandroid.coursesiteapp.modules.login.LoginContract.Presenter;
 import br.com.universodoandroid.coursesiteapp.modules.menu.MenuActivity;
 import br.com.universodoandroid.coursesiteapp.modules.register.RegisterActivity;
 import br.com.universodoandroid.coursesiteapp.modules.resetpassword.ResetPasswordActivity;
 import br.com.universodoandroid.coursesiteapp.services.FirebaseAuthProvider;
-import br.com.universodoandroid.coursesiteapp.services.FirebaseDatabaseProvider;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
 
@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
         new LoginPresenter(this,
                 new FirebaseAuthProvider(this),
-                new FirebaseDatabaseProvider(this));
+                new Session(this));
 
         mActivityLoginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         mActivityLoginBinding.setHandler(this);

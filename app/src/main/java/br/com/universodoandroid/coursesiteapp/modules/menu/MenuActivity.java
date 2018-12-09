@@ -20,6 +20,8 @@ public class MenuActivity extends AppCompatActivity implements MenuContract.View
 
         new MenuPresenter(this, new FirebaseDatabaseProvider(this));
 
+        mPresenter.checkUserSettings();
+
         mActivityMenuBinding = DataBindingUtil.setContentView(this, R.layout.activity_menu);
         mActivityMenuBinding.setHandler(this);
     }
@@ -44,6 +46,7 @@ public class MenuActivity extends AppCompatActivity implements MenuContract.View
     public void setCorrectIntentByUserState(Intent intent, Class classReference) {
         if (classReference != this.getClass()) {
             startActivity(intent);
+            finish();
         }
     }
 }

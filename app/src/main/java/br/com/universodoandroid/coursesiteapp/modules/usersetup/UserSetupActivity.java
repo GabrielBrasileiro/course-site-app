@@ -118,6 +118,7 @@ public class UserSetupActivity extends AppCompatActivity implements UserSetupCon
         Intent setupIntent = new Intent(this, MenuActivity.class);
         setupIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(setupIntent);
+        finish();
     }
 
     @Override

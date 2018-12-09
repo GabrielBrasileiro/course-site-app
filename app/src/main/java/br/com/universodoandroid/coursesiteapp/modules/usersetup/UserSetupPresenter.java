@@ -22,7 +22,7 @@ public class UserSetupPresenter implements UserSetupContract.Presenter {
     @Override
     public void insertUserSettings(String userId, Uri imageUri, String name) {
         mView.showProgressBar();
-        mFirebaseStorageProvider.insertUserInformations(userId, imageUri, name, new RequestCallback<Void>() {
+        mFirebaseStorageProvider.insertUserInformation(userId, imageUri, name, new RequestCallback<Void>() {
             @Override
             public void onSuccess(Void result) {
                 mView.onInsertSuccess();

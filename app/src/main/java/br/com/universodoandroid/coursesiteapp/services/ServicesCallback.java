@@ -1,5 +1,9 @@
 package br.com.universodoandroid.coursesiteapp.services;
 
-public interface ServicesCallback<T> {
-    void onResult(T result);
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+
+public interface ServicesCallback {
+    void onSuccessResult(DataSnapshot dataSnapshot, FirebaseUser userUid);
+    void onFailureResult(String errorMessage);
 }

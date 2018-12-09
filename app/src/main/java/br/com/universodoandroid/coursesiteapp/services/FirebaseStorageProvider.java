@@ -31,21 +31,15 @@ public class FirebaseStorageProvider {
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child(KEY_USERS_DATABASE_REFERENCE);
     }
 
-    public void insertUserInformations(String userId, Uri imageUri, String name, RequestCallback<Void> callback) {
+    public void insertUserInformation(String userId, Uri imageUri, String name, RequestCallback<Void> callback) {
         StorageReference filepath = mStorageImage.child(imageUri.getLastPathSegment());
 
-        filepath.putFile(imageUri).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                String downloadUri = task.getResult().getMetadata().getReference().getDownloadUrl().toString();
-
+        filepath.putFile(imageUri).addOnSuccessListener(taskSnapshot -> filepath.getDownloadUrl().addOnSuccessListener(uri -> {
                 mDatabaseUsers.child(userId).child(KEY_USER_NAME).setValue(name);
-                mDatabaseUsers.child(userId).child(KEY_USER_IMAGE).setValue(downloadUri);
+                mDatabaseUsers.child(userId).child(KEY_USER_IMAGE).setValue(uri.toString());
 
                 callback.onSuccess(null);
-            } else {
-                callback.onError(task.getException().getMessage());
-            }
-        });
+        }));
     }
 
 }

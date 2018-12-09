@@ -61,7 +61,7 @@ public class UserSetupActivity extends AppCompatActivity implements UserSetupCon
             final String userId = mAuth.getCurrentUser().getUid();
 
             if (mImageUri == null) {
-                Toast.makeText(getApplicationContext(), "Adicione uma imagem a postagem!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Adicione uma imagem ao usuário!", Toast.LENGTH_SHORT).show();
                 return;
             }
 

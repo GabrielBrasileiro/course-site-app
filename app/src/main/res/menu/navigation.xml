@@ -2,15 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_songs"
-        android:title="Songs"/>
+        android:id="@+id/navigation_menu"
+        android:icon="@drawable/ic_baseline_dashboard"
+        android:title="Menu" />
 
     <item
-        android:id="@+id/navigation_albums"
-        android:title="Albums"/>
+        android:id="@+id/navigation_my_courses"
+        android:icon="@drawable/ic_baseline_library_books"
+        android:title="Cursos" />
 
     <item
-        android:id="@+id/navigation_artists"
-        android:title="Artists"/>
+        android:id="@+id/navigation_courses"
+        android:icon="@drawable/ic_baseline_create"
+        android:title="Meus Cursos" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/ic_baseline_perm_identity"
+        android:title="Perfil" />
 
 </menu>

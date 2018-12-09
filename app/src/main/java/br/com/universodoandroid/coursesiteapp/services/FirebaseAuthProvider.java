@@ -40,6 +40,16 @@ public class FirebaseAuthProvider {
         });
     }
 
+    public void resetPassword(String email, RequestCallback<Void> callback) {
+        mAuth.sendPasswordResetEmail(email).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                callback.onSuccess(null);
+            } else {
+                callback.onError(task.getException().getMessage());
+            }
+        });
+    }
+
     public void loginWithGoogle() {
 
     }

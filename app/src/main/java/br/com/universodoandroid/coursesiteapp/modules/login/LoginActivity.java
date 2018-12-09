@@ -16,6 +16,7 @@ import br.com.universodoandroid.coursesiteapp.modules.menu.MenuActivity;
 import br.com.universodoandroid.coursesiteapp.modules.register.RegisterActivity;
 import br.com.universodoandroid.coursesiteapp.modules.resetpassword.ResetPasswordActivity;
 import br.com.universodoandroid.coursesiteapp.services.FirebaseAuthProvider;
+import br.com.universodoandroid.coursesiteapp.services.FirebaseDatabaseProvider;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
 
@@ -27,10 +28,14 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        new LoginPresenter(this, new FirebaseAuthProvider(this));
+        new LoginPresenter(this,
+                new FirebaseAuthProvider(this),
+                new FirebaseDatabaseProvider(this));
 
         mActivityLoginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         mActivityLoginBinding.setHandler(this);
+
+        mPresenter.checkUserSettingsExists();
 
         mActivityLoginBinding.forgotPasswordButton.setOnClickListener(view ->
                 startActivity(new Intent(this, ResetPasswordActivity.class)));
@@ -68,6 +73,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     public void onLoginFailed(String errorMessage) {
         Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setCorrectIntentByUserState(Intent intent) {
+        startActivity(intent);
     }
 
     @Override

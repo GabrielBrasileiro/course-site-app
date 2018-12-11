@@ -26,7 +26,7 @@ public class MyCoursesFragment extends Fragment implements MyCoursesContract.Vie
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ofNullable(((MenuActivity) getActivity())).ifPresent(activity -> activity.updateToolbarTitle("My Courses"));
+        ofNullable(((MenuActivity) getActivity())).ifPresent(activity -> activity.updateToolbarTitle("My Course"));
     }
 
     @Nullable
@@ -34,7 +34,6 @@ public class MyCoursesFragment extends Fragment implements MyCoursesContract.Vie
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mFragmentMyCoursesBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_courses, container, false);
         mFragmentMyCoursesBinding.setHandler(this);
-
 
         return mFragmentMyCoursesBinding.getRoot();
     }

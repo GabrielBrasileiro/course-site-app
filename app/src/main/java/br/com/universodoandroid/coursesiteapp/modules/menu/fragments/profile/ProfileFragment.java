@@ -15,7 +15,7 @@ import br.com.universodoandroid.coursesiteapp.R;
 import br.com.universodoandroid.coursesiteapp.databinding.FragmentProfileBinding;
 import br.com.universodoandroid.coursesiteapp.domain.User;
 import br.com.universodoandroid.coursesiteapp.modules.menu.MenuActivity;
-import br.com.universodoandroid.coursesiteapp.services.FirebaseDatabaseProvider;
+import br.com.universodoandroid.coursesiteapp.services.FirebaseDatabaseUserProvider;
 
 import static com.annimon.stream.Optional.ofNullable;
 
@@ -33,7 +33,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
         super.onCreate(savedInstanceState);
         ofNullable(((MenuActivity) getActivity())).ifPresent(activity -> activity.updateToolbarTitle("Profile"));
 
-        new ProfilePresenter(this, new FirebaseDatabaseProvider(getActivity()));
+        new ProfilePresenter(this, new FirebaseDatabaseUserProvider(getActivity()));
     }
 
     @Nullable
@@ -75,7 +75,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
     private void setInformationVisibility(int visibility) {
         mFragmentProfileBinding.userNameTextView.setVisibility(visibility);
         mFragmentProfileBinding.userEmailTextView.setVisibility(visibility);
-        mFragmentProfileBinding.userNumberCoursesTextView.setText(visibility);
+        mFragmentProfileBinding.userNumberCoursesTextView.setVisibility(visibility);
     }
 
 }

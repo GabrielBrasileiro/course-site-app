@@ -1,19 +1,21 @@
 package br.com.universodoandroid.coursesiteapp.modules.menu.fragments.profile;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import br.com.universodoandroid.coursesiteapp.domain.User;
-import br.com.universodoandroid.coursesiteapp.services.FirebaseDatabaseProvider;
+import br.com.universodoandroid.coursesiteapp.services.FirebaseDatabaseUserProvider;
 import br.com.universodoandroid.coursesiteapp.utils.RequestCallback;
 
 class ProfilePresenter implements ProfileContract.Presenter {
 
-    private FirebaseDatabaseProvider mFirebaseDatabaseProvider;
+    private FirebaseDatabaseUserProvider mFirebaseDatabaseUserProvider;
     private ProfileContract.View mView;
 
-    public ProfilePresenter(ProfileContract.View view, FirebaseDatabaseProvider firebaseDatabaseProvider) {
+    public ProfilePresenter(@NonNull ProfileContract.View view,
+                            @NonNull FirebaseDatabaseUserProvider firebaseDatabaseUserProvider) {
         mView = view;
-        mFirebaseDatabaseProvider = firebaseDatabaseProvider;
+        mFirebaseDatabaseUserProvider = firebaseDatabaseUserProvider;
 
         mView.setPresenter(this);
     }
@@ -22,7 +24,7 @@ class ProfilePresenter implements ProfileContract.Presenter {
     public void getUserInformation() {
         mView.showProgressBar();
 
-        mFirebaseDatabaseProvider.getUserInformation(new RequestCallback<User>() {
+        mFirebaseDatabaseUserProvider.getUserInformation(new RequestCallback<User>() {
             @Override
             public void onSuccess(User user) {
                 mView.setUserInformation(user);

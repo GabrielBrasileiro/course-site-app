@@ -50,8 +50,4 @@ public class FirebaseAuthProvider {
         });
     }
 
-    public void loginWithGoogle() {
-
-    }
-
 }

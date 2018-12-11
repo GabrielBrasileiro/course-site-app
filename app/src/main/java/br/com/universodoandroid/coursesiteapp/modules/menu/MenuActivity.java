@@ -18,7 +18,7 @@ import br.com.universodoandroid.coursesiteapp.modules.menu.fragments.courses.Cou
 import br.com.universodoandroid.coursesiteapp.modules.menu.fragments.dashboard.DashboardFragment;
 import br.com.universodoandroid.coursesiteapp.modules.menu.fragments.mycourses.MyCoursesFragment;
 import br.com.universodoandroid.coursesiteapp.modules.menu.fragments.profile.ProfileFragment;
-import br.com.universodoandroid.coursesiteapp.services.FirebaseDatabaseProvider;
+import br.com.universodoandroid.coursesiteapp.services.FirebaseDatabaseUserProvider;
 
 public class MenuActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, MenuContract.View {
 
@@ -29,7 +29,7 @@ public class MenuActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        new MenuPresenter(this, new FirebaseDatabaseProvider(this));
+        new MenuPresenter(this, new FirebaseDatabaseUserProvider(this));
 
         mPresenter.checkUserSettings();
 
@@ -37,6 +37,7 @@ public class MenuActivity extends AppCompatActivity implements BottomNavigationV
         mActivityMenuBinding.setHandler(this);
 
         mActivityMenuBinding.bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        mActivityMenuBinding.bottomNavigationView.setSelectedItemId(R.id.navigation_menu);
     }
 
 

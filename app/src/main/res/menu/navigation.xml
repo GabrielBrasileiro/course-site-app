@@ -8,13 +8,13 @@
 
     <item
         android:id="@+id/navigation_my_courses"
-        android:icon="@drawable/ic_baseline_library_books"
-        android:title="Cursos" />
+        android:icon="@drawable/ic_baseline_create"
+        android:title="My Courses" />
 
     <item
         android:id="@+id/navigation_courses"
-        android:icon="@drawable/ic_baseline_create"
-        android:title="Meus Cursos" />
+        android:icon="@drawable/ic_baseline_library_books"
+        android:title="Courses" />
 
     <item
         android:id="@+id/navigation_profile"
